@@ -2,10 +2,18 @@
 Simple CLI-Tool for prototyping your stuff.
 
 The code should be pretty much self-explaining. 
+The comments at the end of each line should explain the constructor-arguments.
 
 ## Configuration
 You create configuration objects and register them in the configuration.
-The comments at the end of each line should explain the constructor-arguments.
+The user either enters them at a command line level, like this:
+```
+java -jar someprogram.jar firstArg secondArg thirdArg
+```
+
+Or simpleclitool will ask the user for the configuration.
+
+Until now, it is only possible to pass arguments in the specified order. This means you are not able to pass argument 0 and argument 2 via CLI, but argument 1 via question. Making this possible is part of future work.
 
 ```java
 public static void main(String[] args) throws IOException, ParserConfigurationException {
