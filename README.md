@@ -114,5 +114,3 @@ CLYesNoQuestion print = new CLYesNoQuestion(config, "Möchten Sie die Ergebnisse
 There is even a way to ask arbitrary questions. You can figure out how this works if you take a look at the code.
 The question will be asked to the user until he enters a VALID answer (in the yes no case this is "y" or "n"). 
 In order to avoid confusion, the valid answers are presented slash-separated in brackets after the question.
-
-If you have any question feel free to contact me via github.
