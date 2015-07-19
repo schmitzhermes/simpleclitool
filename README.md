@@ -86,10 +86,10 @@ public static void main(String[] args) throws IOException, ParserConfigurationEx
 // it depends on what you want to with it
 
 // You can either use the specified name and class object to retrieve the configuration
-config.getConfiguration("alpha", Double.class))
+config.getConfiguration("alpha", Double.class)
 
 // Or you can use the argument number
-config.getConfiguration(1, Double.class))
+config.getConfiguration(1, Double.class)
 ```
 
 ## Question to the User
