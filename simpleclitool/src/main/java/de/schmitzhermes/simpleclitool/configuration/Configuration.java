@@ -18,7 +18,7 @@ public class Configuration {
     public Configuration() {
 	configurationItemsPerOptionName = new HashMap<String, ConfigurationItem<?>>();
 	configurationItemsPerArgumentNumber = new HashMap<>();
-	count = 0;
+	count = 1;
     }
     
     public void registerConfigurationItem(ConfigurationItem<?> item) {
