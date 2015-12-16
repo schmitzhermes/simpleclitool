@@ -21,27 +21,35 @@ public class SelectionConfigurationItem<T> extends ConfigurationItem<T> {
 		return sb.toString().substring(0, sb.length() - 2);
 	}
 
-	@Override
-	public void start() throws IOException {
-		System.out.println(question);
-
-		for (int i = 0; i < content.getItems().size(); i++) {
-			System.out.println("[" + i + "] " + content.getItems().get(i).toString());
-		}
-		String choice = config.getConsoleReader().readLine();
+	private boolean inputIsValid(String input) {
 		int choiceAsNumber = -1;
 		try {
-			choiceAsNumber = Integer.parseInt(choice);
+			choiceAsNumber = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
-			start();
+			return false;
 		}
 		if (choiceAsNumber >= content.getItems().size()) {
 			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
-			start();
+			return false;
 		}
 
-		item = content.getItems().get(Integer.parseInt(choice));
+		return true;
+	}
+
+	@Override
+	public void start() throws IOException {
+		String choice = null;
+		do {
+			System.out.println(question);
+
+			for (int i = 0; i < content.getItems().size(); i++) {
+				System.out.println("[" + i + "] " + content.getItems().get(i).toString());
+			}
+
+			choice = config.getConsoleReader().readLine();
+			item = content.getItems().get(Integer.parseInt(choice));
+		} while (!inputIsValid(choice));
 
 	}
 }
