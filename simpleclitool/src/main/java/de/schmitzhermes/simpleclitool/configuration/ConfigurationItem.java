@@ -1,5 +1,6 @@
 package de.schmitzhermes.simpleclitool.configuration;
 
+import java.io.Console;
 import java.io.IOException;
 
 public abstract class ConfigurationItem<T> {
@@ -17,6 +18,8 @@ public abstract class ConfigurationItem<T> {
 	protected Class<?> itemClass;
 
 	protected Configuration config;
+
+	protected boolean hideInput;
 
 	public ConfigurationItem(Integer argNumber, String optionName, String question,
 			Class<?> itemClass, T defaultValue, Configuration config) {
@@ -38,6 +41,17 @@ public abstract class ConfigurationItem<T> {
 		this.config = config;
 	}
 
+	public ConfigurationItem(Integer argNumber, String optionName, String question,
+			Class<?> itemClass, boolean hideInput, Configuration config) {
+		this.argNumber = argNumber;
+		this.optionName = optionName;
+		this.defaultValue = null;
+		this.question = question;
+		this.itemClass = itemClass;
+		this.hideInput = hideInput;
+		this.config = config;
+	}
+
 	public void setItem(T item) {
 		this.item = item;
 	}
@@ -48,7 +62,13 @@ public abstract class ConfigurationItem<T> {
 		} else {
 			System.out.println(question);
 		}
-		convertUserInput(config.getConsoleReader().readLine());
+
+		if (hideInput) {
+			Console console = System.console();
+			convertUserInput(new String(console.readPassword()));
+		} else {
+			convertUserInput(config.getConsoleReader().readLine());
+		}
 	}
 
 	public boolean convertUserInput(String userInput) {
