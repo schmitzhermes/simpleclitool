@@ -19,8 +19,19 @@ public class SelectionConfigurationItem<T> extends ConfigurationItem<T> {
 			System.out.println("[" + i + "] " + content.getItems().get(i).toString());
 		}
 		String choice = config.getConsoleReader().readLine();
+		int choiceAsNumber = -1;
+		try {
+			choiceAsNumber = Integer.parseInt(choice);
+		} catch (NumberFormatException e) {
+			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + content.toString());
+			start();
+		}
+		if (choiceAsNumber >= content.getItems().size()) {
+			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + content.toString());
+			start();
+		}
+
 		item = content.getItems().get(Integer.parseInt(choice));
 
 	}
-
 }
