@@ -18,4 +18,9 @@ public abstract class SelectionContent<T> {
 	public void setItems(List<T> items) {
 		this.items = items;
 	}
+
+	@Override
+	public String toString() {
+		return items.toString();
+	}
 }
