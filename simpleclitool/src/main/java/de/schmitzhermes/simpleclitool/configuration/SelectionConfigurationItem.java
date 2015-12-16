@@ -11,6 +11,16 @@ public class SelectionConfigurationItem<T> extends ConfigurationItem<T> {
 		this.content = content;
 	}
 
+	private String getValidOptions() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < content.getItems().size(); i++) {
+			sb.append(i);
+			sb.append(", ");
+		}
+
+		return sb.toString().substring(0, sb.length() - 2);
+	}
+
 	@Override
 	public void start() throws IOException {
 		System.out.println(question);
@@ -23,11 +33,11 @@ public class SelectionConfigurationItem<T> extends ConfigurationItem<T> {
 		try {
 			choiceAsNumber = Integer.parseInt(choice);
 		} catch (NumberFormatException e) {
-			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + content.toString());
+			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
 			start();
 		}
 		if (choiceAsNumber >= content.getItems().size()) {
-			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + content.toString());
+			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
 			start();
 		}
 
