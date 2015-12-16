@@ -43,7 +43,11 @@ public abstract class ConfigurationItem<T> {
 	}
 
 	public void start() throws IOException {
-		System.out.println(question + " (Standardwert: " + defaultValue.toString() + ")");
+		if (defaultValue != null) {
+			System.out.println(question + " (Standardwert: " + defaultValue.toString() + ")");
+		} else {
+			System.out.println(question);
+		}
 		convertUserInput(config.getConsoleReader().readLine());
 	}
 
