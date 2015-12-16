@@ -21,16 +21,18 @@ public class SelectionConfigurationItem<T> extends ConfigurationItem<T> {
 		return sb.toString().substring(0, sb.length() - 2);
 	}
 
-	private boolean inputIsValid(String input) {
+	private boolean inputIsValid(String input, boolean notify) {
 		int choiceAsNumber = -1;
 		try {
 			choiceAsNumber = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
-			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
+			if (notify)
+				System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
 			return false;
 		}
 		if (choiceAsNumber >= content.getItems().size()) {
-			System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
+			if (notify)
+				System.out.println("Dies war keine valide Auswahl. Möglich ist: " + getValidOptions());
 			return false;
 		}
 
@@ -48,8 +50,10 @@ public class SelectionConfigurationItem<T> extends ConfigurationItem<T> {
 			}
 
 			choice = config.getConsoleReader().readLine();
-			item = content.getItems().get(Integer.parseInt(choice));
-		} while (!inputIsValid(choice));
+			if (inputIsValid(choice, false)) {
+				item = content.getItems().get(Integer.parseInt(choice));
+			}
+		} while (!inputIsValid(choice, true));
 
 	}
 }
