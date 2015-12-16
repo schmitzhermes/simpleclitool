@@ -56,6 +56,10 @@ public abstract class ConfigurationItem<T> {
 		this.item = item;
 	}
 
+	public T getItem() {
+		return item;
+	}
+
 	public void start() throws IOException {
 		if (defaultValue != null) {
 			System.out.println(question + " (Standardwert: " + defaultValue.toString() + ")");
