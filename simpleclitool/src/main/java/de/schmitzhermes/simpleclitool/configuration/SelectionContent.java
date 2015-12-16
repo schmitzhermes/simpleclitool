@@ -3,19 +3,19 @@ package de.schmitzhermes.simpleclitool.configuration;
 import java.util.List;
 
 public abstract class SelectionContent<T> {
-    private List<T> items;
-    
-    public SelectionContent() {
-	setItems(possibleSelectionItems());
-    }
+	private List<T> items;
 
-    public abstract List<T> possibleSelectionItems();
+	public SelectionContent() {
+		setItems(possibleSelectionItems());
+	}
 
-    public List<T> getItems() {
-	return items;
-    }
+	public abstract List<T> possibleSelectionItems();
 
-    public void setItems(List<T> items) {
-	this.items = items;
-    }
+	public List<T> getItems() {
+		return items;
+	}
+
+	public void setItems(List<T> items) {
+		this.items = items;
+	}
 }
